@@ -12,13 +12,17 @@ df <- data.frame(s, po, mr, a)
 print(df)
 
 # Mean
-poma <- mean(df[['po']])
-mrma <- mean(df[['mr']])
+poma <- mean(df[["po"]])
+mrma <- mean(df[["mr"]])
 print(pom)
 print(mrna)
 
 # Median
-pome <- median(df[['po']])
-mrme <- median(df[['mr']])
+pome <- median(df[["po"]])
+mrme <- median(df[["mr"]])
 print(pome)
 print(mrme)
+
+# Trimmed mean
+print(weighted.mean(df[["mr"]], w=df[["po"]]))
+
