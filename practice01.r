@@ -8,12 +8,12 @@ mr <- c(5.7, 5.6, 4.7, 5.6, 4.4, 2.8, 2.4, 5.8)
 a <- c("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE")
 # Data Frame
 df <- data.frame(s, po, mr, a)
-
+df <- read.csv('./data/state.csv')
 print(df)
 
 # Mean
-poma <- mean(df[["po"]])
-mrma <- mean(df[["mr"]])
+poma <- mean(df[["Population"]])
+mrma <- mean(df[["Murder.Rate"]])
 print(poma)
 print(mrma)
 
@@ -39,19 +39,20 @@ print(mad(df[["po"]]))
 quantile(df[["mr"]], p=c(.05, .25, .5, .75, .95)) # nolint
 
 # Boxplot
-boxplot(df[["po"]] / 1000000, ylab = "Pulation (millons)")
+boxplot(df[["Population"]] / 1000000, ylab = "Pulation (millons)")
 
 min(df[["po"]])
 
 # Breaks
-breaks <- seq(from=min(df[["po"]]), to=max(df[["po"]]), length.out = 11)
+breaks <- seq(from=min(df[["Population"]]), to=max(df[["Population"]]), length.out = 11)
 
-pop_freq <- cut(df[["po"]], breaks = breaks, right=TRUE, include.lowest=TRUE)
+pop_freq <- cut(df[["Population"]], breaks = breaks, right=TRUE, include.lowest=TRUE)
 
 # Create table
 table(pop_freq)
 
 # Histogram
-hist(df[["po"]], breaks = breaks)
-hist(df[["mr"]], freq=FALSE)
-lines(density(df[["mr"]]), lwd=3, col='blue')
+hist(df[["Population"]], breaks = breaks)
+hist(df[["Murder.Rate"]], freq = FALSE)
+lines(density(df[["Murder.Rate"]]), lwd= 3, col="blue")
+
