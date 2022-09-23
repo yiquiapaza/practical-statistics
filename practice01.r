@@ -39,4 +39,19 @@ print(mad(df[["po"]]))
 quantile(df[["mr"]], p=c(.05, .25, .5, .75, .95)) # nolint
 
 # Boxplot
-boxplot(df[["po"]]/1000000, ylab="Pulation (millons)")
+boxplot(df[["po"]] / 1000000, ylab = "Pulation (millons)")
+
+min(df[["po"]])
+
+# Breaks
+breaks <- seq(from=min(df[["po"]]), to=max(df[["po"]]), length.out = 11)
+
+pop_freq <- cut(df[["po"]], breaks = breaks, right=TRUE, include.lowest=TRUE)
+
+# Create table
+table(pop_freq)
+
+# Histogram
+hist(df[["po"]], breaks = breaks)
+hist(df[["mr"]], freq=FALSE)
+lines(density(df[["mr"]]), lwd=3, col='blue')
