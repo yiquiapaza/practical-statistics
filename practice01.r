@@ -1,14 +1,6 @@
-# State
-s <- c("Alabama", "Alaska", "Arizona", "Arkansas", "Califormia", "Colorado", "Connecticut", "Delaware") #nolint
-# Population
-po <- c(4779736, 710231, 6392017, 2915918, 37253956, 5029196, 3574097, 897934)
-# Murder Rate
-mr <- c(5.7, 5.6, 4.7, 5.6, 4.4, 2.8, 2.4, 5.8)
-# Abbreviation
-a <- c("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE")
-# Data Frame
-df <- data.frame(s, po, mr, a)
 df <- read.csv('./data/state.csv')
+dfw <- read.csv('./data/dfw_airline.csv')
+
 print(df)
 
 # Mean
@@ -18,27 +10,27 @@ print(poma)
 print(mrma)
 
 # Median
-pome <- median(df[["po"]])
-mrme <- median(df[["mr"]])
+pome <- median(df[["Population"]])
+mrme <- median(df[["Murder.Rate"]])
 print(pome)
 print(mrme)
 
 # Trimmed mean
-print(weighted.mean(df[["mr"]], w=df[["po"]])) # nolint
+print(weighted.mean(df[["Murder.Rate"]], w=df[["Population"]]))
 
-# The starndar deviation
-print(sd(df[["po"]]))
+# The standard deviation
+print(sd(df[["Population"]]))
 
 # The interquartile range IQR
-print(IQR(df[["po"]]))
+print(IQR(df[["Population"]]))
 
 # The median absolute deviation
-print(mad(df[["po"]]))
+print(mad(df[["Population"]]))
 
 # Percentiles
-quantile(df[["mr"]], p=c(.05, .25, .5, .75, .95)) # nolint
+quantile(df[["Murder.Rate"]], p=c(.05, .25, .5, .75, .95))
 
-# Boxplot
+# Box plot
 boxplot(df[["Population"]] / 1000000, ylab = "Pulation (millons)")
 
 min(df[["po"]])
@@ -54,5 +46,23 @@ table(pop_freq)
 # Histogram
 hist(df[["Population"]], breaks = breaks)
 hist(df[["Murder.Rate"]], freq = FALSE)
-lines(density(df[["Murder.Rate"]]), lwd= 3, col="blue")
+lines(density(df[["Murder.Rate"]]), lwd= 4, col="blue")
+
+# DFW AIRLINE
+barplot(as.matrix(dfw) / 6, cex.axis=0.8, cex.names=0.7, xlab='Cause of delay', ylab='Count')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
