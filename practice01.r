@@ -1,7 +1,9 @@
 df <- read.csv('./data/state.csv')
-dfw <- read.csv('./data/dfw_airline.csv')
+dfw <- read.csv('./data/dfw_airline.csv') # nolint
+stock_returns <- read.csv('./data/sp500_data.csv.gz', row.names=1)
 
 print(df)
+print(stock_returns)
 
 # Mean
 poma <- mean(df[["Population"]])
@@ -51,7 +53,9 @@ lines(density(df[["Murder.Rate"]]), lwd= 4, col="blue")
 # DFW AIRLINE
 barplot(as.matrix(dfw) / 6, cex.axis=0.8, cex.names=0.7, xlab='Cause of delay', ylab='Count')
 
+# Scatter Plot 
 
+plot(stock_returns$T, stock_returns$VZ, xlab = 'ATT (T)', ylab = 'Verizon (VZ)')
 
 
 
