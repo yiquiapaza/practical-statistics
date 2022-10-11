@@ -1,7 +1,9 @@
 df <- read.csv('./data/state.csv')
 dfw <- read.csv('./data/dfw_airline.csv') # nolint
 stock_returns <- read.csv('./data/sp500_data.csv.gz', row.names=1)
-
+airline_stats <- read.csv('./data/airline_stats.csv', stringsAsFactors = FALSE)
+airline_stats$airline <- ordered(airline_stats$airline, 
+                                 levels=c('Alaska', 'American', 'Jet Blue', 'Delta', 'United', 'Southwest'))
 print(df)
 print(stock_returns)
 
