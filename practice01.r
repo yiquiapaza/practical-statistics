@@ -1,3 +1,5 @@
+library(ggplot2)
+
 df <- read.csv('./data/state.csv')
 dfw <- read.csv('./data/dfw_airline.csv') # nolint
 stock_returns <- read.csv('./data/sp500_data.csv.gz', row.names=1)
@@ -6,6 +8,7 @@ airline_stats$airline <- ordered(airline_stats$airline,
                                  levels=c('Alaska', 'American', 'Jet Blue', 'Delta', 'United', 'Southwest'))
 print(df)
 print(stock_returns)
+airline_stats
 
 # Mean
 poma <- mean(df[["Population"]])
@@ -60,7 +63,15 @@ barplot(as.matrix(dfw) / 6, cex.axis=0.8, cex.names=0.7, xlab='Cause of delay', 
 plot(stock_returns$T, stock_returns$VZ, xlab = 'ATT (T)', ylab = 'Verizon (VZ)')
 
 
+# Box plot 
+boxplot(pct_carrier_delay ~ airline, data=airline_stats, ylim=c(0,50))
 
+# Violin plot
+
+ggplot(data=airline_stats, aes(airline, pct_carrier_delay)) + 
+  ylim(0, 50) +
+  geom_violin() +
+  labs(x= '', y= 'Daily % of Delayed Flights')
 
 
 
